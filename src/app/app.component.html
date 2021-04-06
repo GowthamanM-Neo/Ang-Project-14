@@ -1,0 +1,90 @@
+<h3 class="text-center">USER DATABASE</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <form>
+        <div class="form-group">
+          <label for="username">Enter First Name</label>
+          <input type="text" class="form-control" name="usernameInput" [(ngModel)]="userName">
+        </div>
+        <div class="form-group">
+          <label for="countryName">Select Country</label>
+          <select class="form-control"
+           id="exampleFormControlSelect1" (change)="getCity()" 
+           [(ngModel)]="countryName" name="countryList">
+            <option value="1" selected disabled hidden >Select Country</option>
+            <option *ngFor="let country of countries" value={{country.name}}>{{country.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cityName">Select City</label>
+          <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="cityName" name="cityList">
+            <option selected disabled hidden>Select City</option>
+            <option *ngFor="let city of cities">{{city}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gender">Select Gender</label>
+        
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" 
+          [(ngModel)]="genderValue" value="Male" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+          [(ngModel)]="genderValue" type="radio" name="gender" value="Female" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            Female
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf=isIndia>
+        <label for="username">Enter AadharCard no</label>
+        <input type="text" class="form-control" name="AadharCard" [(ngModel)]="aadharNum">
+      </div>
+      <div class="form-group" *ngIf=isUs>
+        <label for="username">Enter SSN no</label>
+        <input type="text" class="form-control" name="SSNCard" [(ngModel)]="ssn">
+      </div>
+        <button type="submit" class="btn btn-primary" (click)="submit()">Search</button>
+      </form>
+      <small style="color:red">{{errorMessage}}</small>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Firstname</th>
+            <th scope="col">Country</th>
+            <th scope="col">City</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+            <th scope="col">DOB</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let user of users">
+            <td>{{user.firstName}}</td>
+            <td>{{user.country}}</td>
+            <td>{{user.city}}</td>
+            <td>
+                {{user.gender}}
+            </td>
+            <td>
+                {{user.age}}
+            </td>
+            <td>{{user.dob}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4 class="text-center">{{userMessage}}</h4>
+    </div>
+  </div>
+
+</div>
+
